@@ -6,7 +6,7 @@ public class Solicitud {
 	private String rut;
 	private String nombre;
 	private String tipo;
-	private AtomicInteger id = new AtomicInteger(0);
+	private int id;
 	public String getRut() {
 		return rut;
 	}
@@ -25,11 +25,12 @@ public class Solicitud {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	public AtomicInteger getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(AtomicInteger id) {
+	public void setId(int id) {
 		this.id = id;
 	}
+	
 
 }

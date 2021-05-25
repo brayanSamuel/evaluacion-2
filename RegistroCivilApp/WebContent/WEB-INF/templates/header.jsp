@@ -23,13 +23,13 @@
 
 			<div id="navbarBasicExample" class="navbar-menu">
 				<div class="navbar-start">
-					<a class="navbar-item"> Home </a>
+					<a class="navbar-item" href="index.jsp"> Home </a>
 
 					<div class="navbar-item has-dropdown is-hoverable">
 						<a class="navbar-item" href="IngresarSolicitudController.do"> Ingresar Solicitud </a>
 					</div>
 					<div class="navbar-item has-dropdown is-hoverable">
-						<a class="navbar-item"> Atender Solicitud </a>
+						<a class="navbar-item" href="AtenderSolicitudController.do"> Atender Solicitud </a>
 
 					</div>
 		</nav>

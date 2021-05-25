@@ -3,6 +3,8 @@
 	<name>RegistroCivilApp</name>
 	<comment></comment>
 	<projects>
+		<project>RegistroCivilEAR</project>
+		<project>RegistroCivilModel</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

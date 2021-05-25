@@ -4,16 +4,6 @@
 <jsp:include page="../templates/header.jsp"></jsp:include>
 <main class="container mt-6">
 
-	<c:if test="${mensaje != null}">
-		<div class="columns is-centered mb-6">
-			<div class="column is-6">
-				<div class="notification is-info">
-					<p>${mensaje}</p>
-				</div>
-			</div>
-		</div>
-	</c:if>
-
 	<c:if test="${errores != null }">
 		<div class="columns is-centered mb-6">
 			<div class="column is-6">
@@ -76,14 +66,6 @@
 									<input type="number" class="input" name="condicion-txt" id="condicion-txt"/>
 								</div>
 							</div>
-						
-
-						<!-- <div class="field">
-								<label class="label" for="anio-txt">Año de lanzamiento</label>
-								<div class="control">
-									<input type="number" class="input" name="anio-txt" id="anio-txt"/>
-								</div>
-							</div> -->
 					</div>
 					<div class="card-footer has-text-centered">
 						<div class="card-footer-item">

@@ -42,4 +42,11 @@ public class solicitudesDAO implements solicitudesDAOLocal {
 		return solicitudes.stream().filter(s->s.getTipo().contains(tipo)).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<Solicitud> filterByRut(String rut) {
+		// TODO Auto-generated method stub
+		return solicitudes.stream().filter(s->s.getRut().contains(rut)).collect(Collectors.toList());
+	}
+
+
 }

@@ -12,5 +12,6 @@ public interface solicitudesDAOLocal {
 	 List<Solicitud> getAll();
 	 void delete(Solicitud solicitud);
 	 List<Solicitud> filterByType(String tipo);
+	 List<Solicitud> filterByRut(String rut);
 	 
 }

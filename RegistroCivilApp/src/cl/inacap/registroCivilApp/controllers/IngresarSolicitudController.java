@@ -3,12 +3,18 @@ package cl.inacap.registroCivilApp.controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import cl.inacap.RegistroCivilModel.dao.solicitudesDAOLocal;
+import cl.inacap.RegistroCivilModel.dto.Solicitud;
 
 
 /**
@@ -17,7 +23,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/IngresarSolicitudController.do")
 public class IngresarSolicitudController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	@Inject
+	private solicitudesDAOLocal solicitudesDAO;
+	private AtomicInteger id= new AtomicInteger(0);
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -50,6 +58,7 @@ public class IngresarSolicitudController extends HttpServlet {
 		if (rut.isEmpty()) {
 			errores.add("Debe ingresar un rut");
 		}else {
+			List<Solicitud> p = solicitudesDAO.getAll();
 			int n,m,v=2,s=0,rutAux;
 			String d1;
 			
@@ -81,11 +90,25 @@ public class IngresarSolicitudController extends HttpServlet {
 								contiene = true;
 							}
 						if(!contiene) {
-							errores.add("digito verificador inválido");
+							errores.add("Digito verificador inválido");
 						}
 					}
+					
+					
+					for(Solicitud i: p) {
+						if(i.getRut().equalsIgnoreCase(rut)) {
+							errores.add("Ya hay un cliente con ese rut");
+						}
+					}
+					
+//					for(int i=0 ;i<p.size();++i) {
+//						if(p.get(i).getRut().equalsIgnoreCase(rut)) {
+//							errores.add("Ya hay un cliente con ese rut");
+//							break;
+//						}
+//					}
 				}catch(Exception ex) {
-					errores.add("rut inválido");
+					errores.add("Rut inválido");
 				}
 		}
 		
@@ -112,13 +135,22 @@ public class IngresarSolicitudController extends HttpServlet {
 				errores.add("Debe ingresar un numero valido de Solicitud de cedula de identitad");
 			}
 		}
-
 		if (errores.isEmpty()) {
-			request.setAttribute("mensaje", "solicitud ingresada exitosamente");
+			Solicitud solicitud = new Solicitud();
+			solicitud.setRut(rut);
+			solicitud.setNombre(nombre);
+			solicitud.setTipo(tipo);
+			solicitud.setId(id.incrementAndGet());
+			solicitudesDAO.save(solicitud);
+			request.setAttribute("mensaje", "solicitud ingresada exitosamente -->N° de solicitud: "+id);
+			request.getRequestDispatcher("WEB-INF/vistas/atenderSolicitud.jsp").forward(request, response);
+			
 		} else {
 			request.setAttribute("errores", errores);
 		}
 		doGet(request, response);
+		
+		
 
 	}
 
