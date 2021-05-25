@@ -101,12 +101,6 @@ public class IngresarSolicitudController extends HttpServlet {
 						}
 					}
 					
-//					for(int i=0 ;i<p.size();++i) {
-//						if(p.get(i).getRut().equalsIgnoreCase(rut)) {
-//							errores.add("Ya hay un cliente con ese rut");
-//							break;
-//						}
-//					}
 				}catch(Exception ex) {
 					errores.add("Rut inválido");
 				}
