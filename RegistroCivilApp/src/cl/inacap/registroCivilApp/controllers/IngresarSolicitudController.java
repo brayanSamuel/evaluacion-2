@@ -75,7 +75,7 @@ public class IngresarSolicitudController extends HttpServlet {
 						}
 						--n;
 					}
-					d1 = Integer.toString(11-(s%11)).toLowerCase();
+					d1 = Integer.toString(11-(s%11));
 					switch(d1) {
 					case "10": d1="k";
 					break;
@@ -86,12 +86,14 @@ public class IngresarSolicitudController extends HttpServlet {
 					if(rutAux != 0) {
 						boolean contiene =false;
 
-						if(rut.substring(rut.length()-1).equals(d1)) {
+						if(rut.substring(rut.length()-1).equalsIgnoreCase(d1)) {
 								contiene = true;
+							}else {
+								errores.add("Digito verificador inválido");
 							}
-						if(!contiene) {
-							errores.add("Digito verificador inválido");
-						}
+//						if(!contiene) {
+//							
+//						}
 					}
 					
 					
