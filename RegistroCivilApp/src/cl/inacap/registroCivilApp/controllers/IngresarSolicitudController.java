@@ -75,7 +75,7 @@ public class IngresarSolicitudController extends HttpServlet {
 						}
 						--n;
 					}
-					d1 = Integer.toString(11-(s%11));
+					d1 = Integer.toString(11-(s%11)).toLowerCase();
 					switch(d1) {
 					case "10": d1="k";
 					break;
